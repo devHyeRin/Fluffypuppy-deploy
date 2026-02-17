@@ -23,11 +23,11 @@ services:
       - mysql
     ports:
       - "8080:8080"
+    env_file:
+      - .env
     environment:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_PROFILES_ACTIVE=prod
-    env_file:
-      - .env
     volumes:
       - ./uploads:/app/uploads
 
