@@ -10,7 +10,6 @@ services:
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/ssl:/etc/letsencrypt    # 인증서 저장 경로
-      - ./nginx/certbot-etc:/etc/letsencrypt
       - ./nginx/certbot-var:/var/lib/letsencrypt
       - ./nginx/webroot:/var/www/certbot # 인증용 경로
     depends_on:
