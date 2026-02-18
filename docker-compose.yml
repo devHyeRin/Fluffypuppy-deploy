@@ -1,6 +1,21 @@
 version: "3.8"
 
 services:
+  nginx:
+    image: nginx:latest
+    container_name: fluffy-nginx
+    ports:
+      - "80:80"      # HTTP 접속용
+      - "443:443"    # HTTPS 접속용
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/letsencrypt    # 인증서 저장 경로
+      - ./nginx/certbot-etc:/etc/letsencrypt
+      - ./nginx/certbot-var:/var/lib/letsencrypt
+      - ./nginx/webroot:/var/www/certbot # 인증용 경로
+    depends_on:
+      - app
+
   mysql:
     image: mysql:8.0
     container_name: fluffy-mysql
@@ -21,8 +36,10 @@ services:
     restart: always
     depends_on:
       - mysql
-    ports:
-      - "80:8080"
+#    ports:
+#      - "80:8080"
+    expose:
+      - "8080"
     env_file:
       - .env
     environment:
