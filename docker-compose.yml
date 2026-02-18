@@ -30,6 +30,7 @@ services:
       - SPRING_PROFILES_ACTIVE=prod
     volumes:
       - ./uploads:/app/uploads
+      - ./uploads:/images
 
 volumes:
   mysql_data:
