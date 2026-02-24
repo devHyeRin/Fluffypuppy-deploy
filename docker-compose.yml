@@ -4,6 +4,7 @@ services:
   nginx:
     image: nginx:latest
     container_name: fluffy-nginx
+    restart: always
     ports:
       - "80:80"      # HTTP 접속용
       - "443:443"    # HTTPS 접속용
